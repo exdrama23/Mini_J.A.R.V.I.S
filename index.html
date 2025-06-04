@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini_J.A.R.V.I.S </title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  
+  <div class="modelo-status">
+  
+    <spline-viewer class="Falando" url="https://prod.spline.design/xPI2vEqYqoI3gZf3/scene.splinecode"></spline-viewer>
+    <spline-viewer class="Esperando ativo" url="https://prod.spline.design/qe1JLn-gmT6Jxi5W/scene.splinecode"></spline-viewer>
+
+  <div id="status-box">
+    <p id="status">Aguardando ação...</p>
+  </div>
+</div>
+  <div class="mensagem-barra">
+    <div class="caixa-texto">
+      <textarea id="caixa-pergunta" rows="1" placeholder="Pergunte alguma coisa"></textarea>
+    </div>
+
+    <div class="button-group">
+      <button onclick="falarParte()">Minha Parte</button>
+      <button onclick="modoPergunta()" id="btn-microfone"><i class='bx bx-microphone'></i></button>
+    </div>
+
+    <div class="caixa-voz">
+      <button class="botao-mais" id="btn-voz">+</button>
+      <div class="select-content" id="voz-opcoes">
+      <div data-voz="google">Google português do Brasil (Chrome)</div>
+      <div data-voz="eleven">ElevenLabs (voz feminina)</div>
+    </div>
+  </div>
+
+<input type="hidden" id="voz-select" value="google">
+
+  <button id="btn-pergunta" class="enviar"><i class='bx bx-up-arrow-alt'></i></button>
+</div>
+  
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.99/build/spline-viewer.js"></script>
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.99/build/spline-viewer.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

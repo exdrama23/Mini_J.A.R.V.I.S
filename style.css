@@ -1,0 +1,268 @@
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #eaeaea;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  min-height: 100vh;
+  padding: 40px 20px;
+  line-height: 1.5;
+}
+
+
+
+
+/* ---------------------------BOTÔES--------------------------- */
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+
+button {
+  padding: 12px 20px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #171817;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+}
+
+button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  
+}
+
+/* ---------------------------STATUS--------------------------- */
+#status {
+  font-size: 15px;
+  margin-bottom: 1px;
+  color: #444;
+}
+
+/* ---------------------------PERGUNTA DE TEXTO--------------------------- */
+
+.mensagem-barra {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #2a2a2a;
+  padding: 16px;
+  border-radius: 30px;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* ---------------------------FUNÇÔES SEPARADAS--------------------------- */
+.caixa-texto {
+  width: 100%;
+}
+
+.caixa-texto textarea {
+  width: 100%;
+  height: auto;
+  resize: none;
+  border: none;
+  padding: 1px 14px;
+  border-radius: 20px;
+  background-color: #3b3b3b;
+  color: white;
+  font-size: 15px;
+  font-family: 'Segoe UI', sans-serif;
+  outline: none;
+  max-height: 220px;
+  overflow-y: hidden;
+  transition: all 0.2s ease;
+}
+
+
+.select-content {
+  left: 0;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  min-width: 200px;
+  bottom: 100%;     
+  margin-bottom: 10px; 
+  z-index: 99;
+}
+
+
+
+.select-content div {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.select-content div:hover {
+  background-color: #eee;
+}
+
+/*---------------------------CONFIGURAÇÃO GERAL DOS BOTÕES---------------------------*/
+.botao-mais,
+#btn-microfone,
+.enviar{
+  background: rgb(53, 51, 51);
+  color: rgb(255, 255, 255);
+  transition: background-color 0.3s ease;
+}
+
+.botao-mais:hover,
+#btn-microfone:hover,
+.enviar:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+
+.botao-mais,
+#btn-microfone,
+.enviar{
+  width: 40px;           
+  height: 40px;
+  padding: 0;            
+  display: flex;        
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;    
+}
+
+.botao-mais i,
+#btn-microfone i,
+.enviar i{
+  font-size: 20px;       
+}
+
+.botao-mais{
+  margin-left: 480px;
+}
+
+/*---------------------------CONFIGURAÇÃO DA IMAGEM 3D---------------------------*/
+spline-viewer {
+    position: absolute;
+    top: -4%;
+    right: 20%;
+    transform: scale(0.9);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+}
+
+spline-viewer.ativo {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+
+.modelo-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+
+#status-box {
+  background: #eaeaea;
+  padding: 1px;
+  border-radius: 12px;
+  width: 500px;
+  min-height: 120px;
+  display: flex;
+  margin-top: 10rem;
+  margin-left: 20rem;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  z-index: 1;
+}
+
+/* ---------------------------MEDIA QUERIES PARA DISPOSITIVOS MÓVEIS--------------------------- */
+@media (max-width: 768px) {
+  body {
+    padding: 20px 10px;
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .mensagem-barra {
+    bottom: 20px;
+    padding: 10px 10px;
+    flex-direction: column;
+    align-items: stretch;
+    width: 95%;
+    height: -25rem;
+  }
+
+  .caixa-texto textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .button-group {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .botao-mais {
+    margin-left: 0;
+    margin-top: 10px;
+    align-self: flex-end;
+  }
+
+  .modelo-status {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  #status-box {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 2rem;
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .select-content {
+    min-width: 100%;
+  }
+
+  spline-viewer {
+    display: none !important; 
+  }
+}
