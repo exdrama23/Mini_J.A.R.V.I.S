@@ -1,4 +1,4 @@
-const OPENROUTER_API_KEY = "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";
+const OPENROUTER_API_KEY = "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";
 const ELEVEN_API_KEY = "sk_374764a08df412ec177a74d9055bc553002d4db133cfbf03";
 const textoParte = "Olá, eu sou o assistente de Alec Vinícius e Duda Pacheco, irei falar um pouco sobre o gamma. O Gamma é uma ferramenta moderna de criação de apresentações e documentos interativos, que une a simplicidade de um editor de texto com o impacto visual de um PowerPoint. Diferente das ferramentas tradicionais, o Gamma utiliza inteligência artificial para ajudar na criação de conteúdos dinâmicos, visualmente atraentes e fáceis de compartilhar. É como se fosse uma mistura entre Google Slides, Canva e Notion, mas com foco em produtividade e colaboração. ";
 
@@ -145,7 +145,7 @@ async function buscarResposta(pergunta) {
         Accept: "application/json",
         Authorization: "Bearer " + OPENROUTER_API_KEY,
         "Content-Type": "application/json",
-        "HTTP-Referer": "PerguntaKey",
+        "HTTP-Referer": "chatkey",
       },
       body: JSON.stringify({
         model: "mistralai/mistral-7b-instruct",
