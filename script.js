@@ -1,6 +1,7 @@
-const OPENROUTER_API_KEY = "Chave da IA";
-const ELEVEN_API_KEY = "sk_807751594233c3407b1577fd6ee92c7621b1f57d0e9face0";
+const OPENROUTER_API_KEY = "KEY BOT";
+const ELEVEN_API_KEY = "KEY ELEVEN";
 const textoParte = "Olá, eu sou o assistente de Alec Vinícius e Duda Pacheco, irei falar um pouco sobre o gamma. O Gamma é uma ferramenta moderna de criação de apresentações e documentos interativos, que une a simplicidade de um editor de texto com o impacto visual de um PowerPoint. Diferente das ferramentas tradicionais, o Gamma utiliza inteligência artificial para ajudar na criação de conteúdos dinâmicos, visualmente atraentes e fáceis de compartilhar. É como se fosse uma mistura entre Google Slides, Canva e Notion, mas com foco em produtividade e colaboração. ";
+const STABILITY_API_KEY = "CRIAR IMAGEM KEY";
 
 let falaAtual = null;
 let vozes = [];
@@ -106,6 +107,7 @@ async function falarParte() {
     await cancelarFala();
     document.getElementById("status").innerText = "Fala interrompida.";
   } else {
+    esconderImagemGerada();
     document.getElementById("status").innerText = "Falando sua parte do projeto...";
     await falarTexto(textoParte);
     document.getElementById("status").innerText = "Pronto!";
@@ -152,7 +154,7 @@ async function buscarResposta(pergunta) {
         messages: [
           {
             role: "system",
-            content: "Responda de forma curta, clara e objetiva."
+            content: "Sempre responda em **português do Brasil**, mesmo que a pergunta esteja em outro idioma. Seja curto, claro e objetivo."
           },
           {
             role: "user",
@@ -179,11 +181,11 @@ async function buscarResposta(pergunta) {
 // Pergunta digitada
 document.getElementById("btn-pergunta").addEventListener("click", async function() {
   const perguntaDigitada = document.getElementById("caixa-pergunta").value.trim();
-  if (perguntaDigitada === "") {
+  if (perguntaDigitada === "") {  
     document.getElementById("status").innerText = "Por favor, digite uma pergunta.";
     return;
   }
-
+  esconderImagemGerada();
   document.getElementById("status").innerText = "Pergunta digitada: " + perguntaDigitada;
 
   const resposta = await buscarResposta(perguntaDigitada);
@@ -252,3 +254,66 @@ textarea.addEventListener("input", () => {
 });
 
 
+// CRIAR IMAGEMS IA
+
+async function gerarImagem() {
+  const prompt = document.getElementById("caixa-pergunta").value.trim();
+  if (!prompt) {
+    alert("Descreva sua imagem para gerá-la.");
+    return;
+  }
+
+  mostrarFalando();
+  document.getElementById("status").innerText =
+    " Aguarde 1 minuto, a imagem está sendo gerada…";
+
+  try {
+    const resposta = await fetch(
+      "https://api.stability.ai/v1/generation/stable-diffusion-v1-6/text-to-image",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: `Bearer ${STABILITY_API_KEY}`,
+        },
+        body: JSON.stringify({
+          text_prompts: [{ text: prompt }],
+          cfg_scale: 7,
+          height: 512,
+          width: 512,
+          steps: 30,
+        }),
+      }
+    );
+
+    const dados = await resposta.json();
+
+    if (dados.artifacts && dados.artifacts.length > 0) {
+      const imgBase64 = dados.artifacts[0].base64;
+      const imgEl = document.getElementById("imagem-gerada");
+      imgEl.src = "data:image/png;base64," + imgBase64;
+      imgEl.style.display = "block";
+
+      document.getElementById("status").innerText = "Imagem gerada!";
+    } else {
+      throw new Error("Nenhuma imagem retornada.");
+    }
+  } catch (erro) {
+    console.error("Erro ao gerar imagem:", erro);
+    document.getElementById("status").innerText =
+      "Erro ao gerar a imagem. Tente novamente.";
+  } finally {
+    mostrarEsperando();
+  }
+}
+
+// APAGAR IMAGEM
+
+function esconderImagemGerada() {
+  const img = document.getElementById("imagem-gerada");
+  if (img) {
+    img.style.display = "none";   
+    img.removeAttribute("src");   
+  }
+}
