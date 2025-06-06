@@ -1,5 +1,5 @@
-const OPENROUTER_API_KEY = "Adicionar a key aqui";
-const ELEVEN_API_KEY = "sk_374764a08df412ec177a74d9055bc553002d4db133cfbf03";
+const OPENROUTER_API_KEY = "Chave da IA";
+const ELEVEN_API_KEY = "sk_807751594233c3407b1577fd6ee92c7621b1f57d0e9face0";
 const textoParte = "Olá, eu sou o assistente de Alec Vinícius e Duda Pacheco, irei falar um pouco sobre o gamma. O Gamma é uma ferramenta moderna de criação de apresentações e documentos interativos, que une a simplicidade de um editor de texto com o impacto visual de um PowerPoint. Diferente das ferramentas tradicionais, o Gamma utiliza inteligência artificial para ajudar na criação de conteúdos dinâmicos, visualmente atraentes e fáceis de compartilhar. É como se fosse uma mistura entre Google Slides, Canva e Notion, mas com foco em produtividade e colaboração. ";
 
 let falaAtual = null;
@@ -199,20 +199,20 @@ async function gerarAudioEleven(texto) {
     audioElevenAtual = null;
   }
 
-  const resposta = await fetch("https://api.elevenlabs.io/v1/text-to-speech/XJa38TJgDqYhj5mYbSJA", {
-    method: "POST",
-    headers: {
-      "xi-api-key": ELEVEN_API_KEY,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      text: texto,
-      voice_settings: {
-        stability: 0.5,
-        similarity_boost: 0.75
-      }
-    })
-  });
+  const resposta = await fetch("https://api.elevenlabs.io/v1/text-to-speech/kEAfvPdFUIzZ5KUKLLSJ", {
+  method: "POST",
+  headers: {
+    "xi-api-key": ELEVEN_API_KEY,
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    text: texto,
+    voice_settings: {
+      stability: 0.5,
+      similarity_boost: 0.75
+    }
+  })
+});
 
   const blob = await resposta.blob();
   audioElevenAtual = new Audio(URL.createObjectURL(blob));
